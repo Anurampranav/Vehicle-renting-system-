@@ -173,19 +173,13 @@ or serve it using Live Server.
 
 ---
 
-## 📷 Screenshots
 
-> Add screenshots of:
-<img width="582" height="329" alt="Screenshot 2026-06-28 003442" src="https://github.com/user-attachments/assets/e1ec877f-49ea-4e38-941d-a0374f723f6e" />
-<img width="637" height="328" alt="Screenshot 2026-06-28 005038" src="https://github.com/user-attachments/assets/43dd50bd-e440-4c7d-90ae-9a717e3a47b0" />
 
 - Home Page
-- Login
-- Vehicle Listing
-- Booking Page
-- Razorpay Payment
-- Customer Dashboard
-- Admin Dashboard
+<img width="582" height="329" alt="Screenshot 2026-06-28 003442" src="https://github.com/user-attachments/assets/e1ec877f-49ea-4e38-941d-a0374f723f6e" />
+
+- Admin\owner dashboard
+<img width="637" height="328" alt="Screenshot 2026-06-28 005038" src="https://github.com/user-attachments/assets/43dd50bd-e440-4c7d-90ae-9a717e3a47b0" />
 
 ---
 
