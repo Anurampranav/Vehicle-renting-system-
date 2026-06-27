@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signature Drive Rentals | Premium Indian Road Trips</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-primary-fixed": "#062104","inverse-on-surface": "#f3f0eb","on-error": "#ffffff","error": "#ba1a1a","on-tertiary-container": "#e8ffdb","on-error-container": "#93000a","on-background": "#1c1c19","inverse-surface": "#31302d","outline-variant": "#c3c8bd","outline": "#73796f","tertiary-container": "#627858","on-tertiary-fixed-variant": "#374c30","tertiary-fixed-dim": "#b5cea8","secondary-container": "#c7e9bb","surface-container": "#f0ede9","on-tertiary-fixed": "#0d2008","surface-bright": "#fcf9f4","secondary": "#486641","on-secondary-fixed": "#052104","secondary-fixed": "#c9ecbd","on-secondary-fixed-variant": "#314e2b","surface-container-lowest": "#ffffff","secondary-fixed-dim": "#aed0a3","on-secondary-container": "#4c6a45","surface-container-high": "#ebe8e3","surface-container-highest": "#e5e2dd","tertiary": "#4a5f41","on-tertiary": "#ffffff","surface-variant": "#e5e2dd","error-container": "#ffdad6","surface-dim": "#dcdad5","tertiary-fixed": "#d1eac3","inverse-primary": "#afd0a1","primary": "#44613b","surface-tint": "#496640","surface-container-low": "#f6f3ee","primary-fixed": "#caecbc","on-secondary": "#ffffff","primary-fixed-dim": "#afd0a1","primary-container": "#5c7a52","on-primary-fixed-variant": "#324e2a","surface": "#fcf9f4","on-surface-variant": "#434840","on-primary": "#ffffff","on-surface": "#1c1c19","background": "#fcf9f4","on-primary-container": "#e9ffdd"
+      },
+      borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+      fontFamily: { sans: ["Plus Jakarta Sans", "sans-serif"] },
+      fontSize: {
+        "headline-sm": ["20px", {lineHeight:"28px",fontWeight:"600"}],
+        "label-md": ["14px", {lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],
+        "label-sm": ["12px", {lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],
+        "display-lg": ["48px", {lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"700"}],
+        "headline-md": ["24px", {lineHeight:"32px",fontWeight:"600"}],
+        "body-md": ["16px", {lineHeight:"24px",fontWeight:"400"}],
+        "display-lg-mobile": ["32px", {lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],
+        "body-lg": ["18px", {lineHeight:"28px",fontWeight:"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background-color:#FAF7F2; font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden; }
+.glass-card { background:rgba(255,255,255,0.72); backdrop-filter:blur(16px); border:1px solid #D4C9B8; box-shadow:0 8px 32px 0 rgba(92,122,82,0.1); transition:all 280ms cubic-bezier(0.4,0,0.2,1); }
+.floating-anim { animation:float 6s ease-in-out infinite; }
+@keyframes float { 0%{transform:translateY(0px)}50%{transform:translateY(-6px)}100%{transform:translateY(0px)} }
+.card-hover:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 20px 40px rgba(92,122,82,0.15); }
+.material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+/* Pages */
+.page { display:none; }
+.page.active { display:block; }
+/* Modal */
+.modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center; }
+.modal-overlay.open { display:flex; }
+/* Toast */
+#toast { position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#44613b;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:999;transition:transform 0.3s ease;opacity:0; }
+#toast.show { transform:translateX(-50%) translateY(0);opacity:1; }
+/* Star rating */
+.star { cursor:pointer;color:#c3c8bd;font-size:24px;transition:color 0.15s; }
+.star.active,.star:hover { color:#f59e0b; }
+/* Range slider */
+input[type=range] { -webkit-appearance:none;height:4px;border-radius:2px;background:#c3c8bd;outline:none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#44613b;cursor:pointer; }
+/* Admin sidebar */
+.admin-link { display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:14px;font-weight:500;color:#434840; }
+.admin-link:hover,.admin-link.active { background:#caecbc;color:#44613b; }
+/* Table */
+.data-table { width:100%;border-collapse:collapse; }
+.data-table th { background:#f6f3ee;padding:12px 16px;text-align:left;font-size:12px;font-weight:600;letter-spacing:0.04em;color:#434840;text-transform:uppercase; }
+.data-table td { padding:12px 16px;border-bottom:1px solid #e5e2dd;font-size:14px;color:#1c1c19; }
+.data-table tr:hover td { background:#f6f3ee; }
+/* Badge */
+.badge { display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:0.04em; }
+.badge-green { background:#c7e9bb;color:#314e2b; }
+.badge-yellow { background:#fef3c7;color:#92400e; }
+.badge-red { background:#ffdad6;color:#93000a; }
+.badge-blue { background:#dbeafe;color:#1e40af; }
+.badge-gray { background:#e5e2dd;color:#434840; }
+/* Chip */
+.chip { display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;border:1.5px solid #c3c8bd;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.72);backdrop-filter:blur(8px); }
+.chip.selected,.chip:hover { background:#44613b;color:#fff;border-color:#44613b; }
+/* Image upload */
+.upload-zone { border:2px dashed #c3c8bd;border-radius:12px;padding:32px;text-align:center;cursor:pointer;transition:all 0.2s; }
+.upload-zone:hover { border-color:#44613b;background:#f6f3ee; }
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#f6f3ee}::-webkit-scrollbar-thumb{background:#c3c8bd;border-radius:3px}
+/* Nav underline active */
+.nav-active { font-weight:700;color:#44613b;border-bottom:2px solid #44613b; }
+/* Responsive */
+@media(max-width:768px){ .hide-mobile{display:none!important} }
+</style>
+</head>
+<body>
+
+<!-- ===================== TOAST ===================== -->
+<div id="toast"></div>
+
+<!-- ===================== GLOBAL MODALS ===================== -->
+
+<!-- Sign In Modal -->
+<div class="modal-overlay" id="signinModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-md mx-4 relative">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('signinModal')"><span class="material-symbols-outlined">close</span></button>
+    <div id="signinView">
+      <h2 class="text-headline-md font-semibold text-primary mb-6">Welcome back</h2>
+      <div class="flex gap-2 mb-6 p-1 bg-surface-container rounded-lg">
+        <button onclick="setSigninRole('customer')" id="roleCustomerBtn" class="flex-1 py-2 rounded-md text-label-md transition-all bg-primary text-on-primary">Customer</button>
+        <button onclick="setSigninRole('admin')" id="roleAdminBtn" class="flex-1 py-2 rounded-md text-label-md transition-all text-on-surface-variant">Owner / Admin</button>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Email</label>
+          <input id="signinEmail" type="email" placeholder="you@example.com" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Password</label>
+          <input id="signinPassword" type="password" placeholder="••••••••" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <button onclick="handleSignin()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity mt-2">Sign In</button>
+        <p class="text-center text-label-sm text-on-surface-variant">Don't have an account? <button class="text-primary font-semibold" onclick="switchToRegister()">Register</button></p>
+      </div>
+    </div>
+    <div id="registerView" class="hidden">
+      <h2 class="text-headline-md font-semibold text-primary mb-6">Create account</h2>
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Full Name</label>
+          <input id="regName" type="text" placeholder="Arjun Sharma" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Email</label>
+          <input id="regEmail" type="email" placeholder="you@example.com" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Phone</label>
+          <input id="regPhone" type="tel" placeholder="+91 98765 43210" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Password</label>
+          <input id="regPassword" type="password" placeholder="••••••••" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <button onclick="handleRegister()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity mt-2">Create Account</button>
+        <p class="text-center text-label-sm text-on-surface-variant">Already have an account? <button class="text-primary font-semibold" onclick="switchToSignin()">Sign In</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Booking Confirmation Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-lg mx-4 relative max-h-[90vh] overflow-y-auto">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('bookingModal')"><span class="material-symbols-outlined">close</span></button>
+    <h2 class="text-headline-md font-semibold text-primary mb-6">Confirm Booking</h2>
+    <div id="bookingVehicleInfo" class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl mb-6"></div>
+    <div class="flex flex-col gap-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Pickup Date</label>
+          <input id="bookPickupDate" type="date" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-label-sm text-on-surface-variant">Return Date</label>
+          <input id="bookReturnDate" type="date" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Pickup Location</label>
+        <div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 cursor-pointer hover:border-primary transition-colors" onclick="openLocationPicker('booking')">
+          <span class="material-symbols-outlined text-primary text-base">location_on</span>
+          <span id="bookLocationDisplay" class="flex-1 text-body-md text-on-surface-variant select-none">Select State → City</span>
+          <input id="bookLocation" type="hidden" value=""/>
+          <span class="material-symbols-outlined text-on-surface-variant text-base">expand_more</span>
+        </div>
+      </div>
+      <div id="bookingPriceSummary" class="p-4 bg-primary-fixed rounded-xl"></div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Payment Method</label>
+        <div class="flex gap-3">
+          <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="payment" value="upi" class="accent-primary"/> <span class="text-label-md">UPI</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="payment" value="card" checked class="accent-primary"/> <span class="text-label-md">Card</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="payment" value="cash" class="accent-primary"/> <span class="text-label-md">Cash</span></label>
+        </div>
+      </div>
+      <button onclick="confirmBooking()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">check_circle</span> Confirm & Pay
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-md mx-4 relative">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('reviewModal')"><span class="material-symbols-outlined">close</span></button>
+    <h2 class="text-headline-md font-semibold text-primary mb-2">Leave a Review</h2>
+    <p id="reviewVehicleName" class="text-label-sm text-on-surface-variant mb-6"></p>
+    <div class="flex gap-2 mb-4" id="starContainer">
+      <span class="star material-symbols-outlined" data-val="1" onclick="setRating(1)">star</span>
+      <span class="star material-symbols-outlined" data-val="2" onclick="setRating(2)">star</span>
+      <span class="star material-symbols-outlined" data-val="3" onclick="setRating(3)">star</span>
+      <span class="star material-symbols-outlined" data-val="4" onclick="setRating(4)">star</span>
+      <span class="star material-symbols-outlined" data-val="5" onclick="setRating(5)">star</span>
+    </div>
+    <textarea id="reviewText" rows="4" placeholder="Share your experience..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors resize-none mb-4"></textarea>
+    <button onclick="submitReview()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md">Submit Review</button>
+  </div>
+</div>
+
+<!-- Add/Edit Vehicle Modal (Admin) -->
+<div class="modal-overlay" id="vehicleFormModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-2xl mx-4 relative max-h-[90vh] overflow-y-auto">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('vehicleFormModal')"><span class="material-symbols-outlined">close</span></button>
+    <h2 class="text-headline-md font-semibold text-primary mb-6" id="vehicleFormTitle">Add New Vehicle</h2>
+    <input type="hidden" id="editVehicleId"/>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Vehicle Name</label>
+        <input id="vName" type="text" placeholder="e.g. Maruti Swift Dzire" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Category</label>
+        <select id="vCategory" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary">
+          <option value="Scooter">Scooter</option>
+          <option value="Hatchback">Hatchback</option>
+          <option value="Sedan">Sedan</option>
+          <option value="SUV">SUV</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Price per day (₹)</label>
+        <input id="vPrice" type="number" placeholder="599" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Seats</label>
+        <input id="vSeats" type="number" placeholder="5" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Fuel Type</label>
+        <select id="vFuel" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary">
+          <option>Petrol</option><option>Diesel</option><option>Electric</option><option>CNG</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Transmission</label>
+        <select id="vTransmission" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary">
+          <option>Manual</option><option>Auto</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Location / City</label>
+        <input id="vLocation" type="text" placeholder="e.g. Bengaluru" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Registration Number</label>
+        <input id="vReg" type="text" placeholder="KA 01 AB 1234" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+      <div class="md:col-span-2 flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Description</label>
+        <textarea id="vDesc" rows="2" placeholder="Brief description of vehicle features..." class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary resize-none"></textarea>
+      </div>
+      <div class="md:col-span-2 flex flex-col gap-1">
+        <label class="text-label-sm text-on-surface-variant">Vehicle Image URL (optional)</label>
+        <input id="vImage" type="url" placeholder="https://..." class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary"/>
+      </div>
+    </div>
+    <button onclick="saveVehicle()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity mt-6">Save Vehicle</button>
+  </div>
+</div>
+
+<!-- Booking Detail Modal (Admin) -->
+<div class="modal-overlay" id="bookingDetailModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-lg mx-4 relative">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('bookingDetailModal')"><span class="material-symbols-outlined">close</span></button>
+    <h2 class="text-headline-md font-semibold text-primary mb-6">Booking Details</h2>
+    <div id="bookingDetailContent"></div>
+  </div>
+</div>
+
+<!-- ===================== CUSTOMER PAGES ===================== -->
+<div id="customerApp" class="page active">
+
+  <!-- Customer Header -->
+  <header class="fixed top-0 left-0 right-0 z-[100] bg-surface/90 backdrop-blur-lg border-b border-outline-variant/30 shadow-[0_8px_32px_0_rgba(92,122,82,0.1)]">
+    <div class="flex justify-between items-center h-20 px-6 md:px-10 max-w-[1200px] mx-auto">
+      <h1 class="text-xl font-semibold text-primary tracking-tight cursor-pointer" onclick="showCustomerPage('home')">Signature Drive Rentals</h1>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="navBookings" onclick="requireAuth(()=>showCustomerPage('myBookings'))">My Bookings</a>
+        <a class="text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showCustomerPage('home')">Fleet</a>
+        <a class="text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showCustomerPage('offers')">Offers</a>
+        <a class="text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showCustomerPage('support')">Support</a>
+        <div id="authBtnArea">
+          <button onclick="openModal('signinModal')" class="ml-4 px-6 py-2 bg-primary text-on-primary rounded-lg text-label-md transition-transform active:scale-95 hover:shadow-lg">Sign In</button>
+        </div>
+      </nav>
+      <!-- Mobile menu button -->
+      <button class="md:hidden" onclick="toggleMobileMenu()"><span class="material-symbols-outlined text-primary">menu</span></button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="hidden md:hidden flex-col px-6 pb-4 bg-surface/95 border-t border-outline-variant/20">
+      <a class="py-3 text-on-surface-variant hover:text-primary cursor-pointer" onclick="requireAuth(()=>showCustomerPage('myBookings'));toggleMobileMenu()">My Bookings</a>
+      <a class="py-3 text-on-surface-variant hover:text-primary cursor-pointer" onclick="showCustomerPage('home');toggleMobileMenu()">Fleet</a>
+      <a class="py-3 text-on-surface-variant hover:text-primary cursor-pointer" onclick="showCustomerPage('offers');toggleMobileMenu()">Offers</a>
+      <a class="py-3 text-on-surface-variant hover:text-primary cursor-pointer" onclick="showCustomerPage('support');toggleMobileMenu()">Support</a>
+      <button onclick="openModal('signinModal');toggleMobileMenu()" class="mt-2 py-2 bg-primary text-on-primary rounded-lg text-label-md">Sign In</button>
+    </div>
+  </header>
+
+  <!-- ---- HOME PAGE ---- -->
+  <div id="custPage-home" class="pt-24 min-h-screen">
+    <!-- Background map -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-20" style="background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/India_location_map.svg/700px-India_location_map.svg.png') center/cover no-repeat;filter:grayscale(1) contrast(0.6) brightness(1.2)"></div>
+
+    <main class="relative z-10 flex flex-col items-center pt-8 pb-24 px-4">
+      <!-- Booking Search -->
+      <section class="floating-anim w-full max-w-4xl mb-10">
+        <div class="glass-card p-8 rounded-xl">
+          <h2 class="text-xl font-semibold text-primary mb-6">Where do you want to go?</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col gap-2">
+              <label class="text-label-sm text-on-surface-variant">Pickup Location</label>
+              <div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 focus-within:border-primary transition-colors cursor-pointer" onclick="openLocationPicker('search')">
+                <span class="material-symbols-outlined text-primary">location_on</span>
+                <span id="searchLocationDisplay" class="w-full text-body-md text-on-surface-variant select-none">State → City</span>
+                <input id="searchLocation" type="hidden" value=""/>
+                <span class="material-symbols-outlined text-on-surface-variant text-base">expand_more</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-label-sm text-on-surface-variant">Dates</label>
+              <div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 focus-within:border-primary transition-colors">
+                <span class="material-symbols-outlined text-primary">calendar_today</span>
+                <input id="searchDates" class="bg-transparent border-none focus:ring-0 w-full text-body-md outline-none" placeholder="Start - End Date" type="text" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"/>
+              </div>
+            </div>
+            <div class="flex flex-col justify-end">
+              <button onclick="searchVehicles()" class="w-full h-[52px] bg-primary-container text-on-primary-container text-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all shadow-lg active:scale-95">
+                <span class="material-symbols-outlined">search</span> Search vehicles
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters Row -->
+      <section class="flex flex-wrap gap-3 mb-10 justify-center">
+        <span class="chip selected" onclick="filterCategory(this,'All')">All</span>
+        <span class="chip" onclick="filterCategory(this,'Scooter')"><span class="material-symbols-outlined text-base">moped</span>Scooter</span>
+        <span class="chip" onclick="filterCategory(this,'Hatchback')"><span class="material-symbols-outlined text-base">directions_car</span>Hatchback</span>
+        <span class="chip" onclick="filterCategory(this,'Sedan')"><span class="material-symbols-outlined text-base">directions_car</span>Sedan</span>
+        <span class="chip" onclick="filterCategory(this,'SUV')"><span class="material-symbols-outlined text-base">airport_shuttle</span>SUV</span>
+        <!-- Price filter -->
+        <div class="flex items-center gap-3 chip border-none bg-surface-container-low px-4">
+          <span class="text-label-sm text-on-surface-variant whitespace-nowrap">Max ₹</span>
+          <input type="range" id="priceFilter" min="299" max="5000" value="5000" step="100" oninput="document.getElementById('priceDisplay').textContent=this.value;filterByPrice()" style="width:90px"/>
+          <span id="priceDisplay" class="text-label-sm font-bold text-primary whitespace-nowrap">5000</span>
+        </div>
+      </section>
+
+      <!-- Vehicle Cards Grid -->
+      <section class="w-full max-w-[1200px]">
+        <div id="vehicleGrid" class="flex flex-wrap justify-center gap-8"></div>
+        <p id="noVehiclesMsg" class="hidden text-center text-on-surface-variant py-16">No vehicles match your search. Try different filters.</p>
+      </section>
+    </main>
+
+    <!-- Floating Summary -->
+    <aside class="fixed bottom-8 right-6 z-50 hidden md:block" id="floatingSummary">
+      <div class="glass-card p-6 rounded-xl w-64 shadow-2xl floating-anim">
+        <p class="text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Current Selection</p>
+        <div class="flex justify-between items-end mb-4">
+          <div>
+            <h4 id="summaryPrice" class="text-xl font-semibold text-primary">₹—</h4>
+            <p class="text-label-sm text-on-surface-variant">Includes taxes & fees</p>
+          </div>
+          <span class="material-symbols-outlined text-secondary">verified</span>
+        </div>
+        <button onclick="proceedFromSummary()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+          Confirm & Pay <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ---- MY BOOKINGS PAGE ---- -->
+  <div id="custPage-myBookings" class="hidden pt-28 min-h-screen px-4 md:px-10 max-w-[1200px] mx-auto pb-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-headline-md font-semibold text-primary">My Bookings</h2>
+    </div>
+    <div id="myBookingsList" class="flex flex-col gap-4"></div>
+    <p id="noBookingsMsg" class="hidden text-center text-on-surface-variant py-16">You have no bookings yet. <button class="text-primary font-semibold" onclick="showCustomerPage('home')">Browse vehicles →</button></p>
+  </div>
+
+  <!-- ---- OFFERS PAGE ---- -->
+  <div id="custPage-offers" class="hidden pt-28 min-h-screen px-4 md:px-10 max-w-[1200px] mx-auto pb-16">
+    <h2 class="text-headline-md font-semibold text-primary mb-8">Exclusive Offers</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="offersList"></div>
+  </div>
+
+  <!-- ---- SUPPORT PAGE ---- -->
+  <div id="custPage-support" class="hidden pt-28 min-h-screen px-4 md:px-10 max-w-[1200px] mx-auto pb-16">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-headline-md font-semibold text-primary mb-2">Contact Support</h2>
+      <p class="text-body-md text-on-surface-variant mb-10">We're here to help. Raise a ticket and our team will respond within 24 hours.</p>
+
+      <!-- Quick help cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <button onclick="prefillSupport('Booking issue')" class="glass-card p-4 rounded-xl text-center hover:border-primary transition-colors group">
+          <span class="material-symbols-outlined text-primary text-3xl mb-2 block">book_online</span>
+          <p class="text-label-md text-on-surface group-hover:text-primary transition-colors">Booking Issue</p>
+        </button>
+        <button onclick="prefillSupport('Vehicle problem')" class="glass-card p-4 rounded-xl text-center hover:border-primary transition-colors group">
+          <span class="material-symbols-outlined text-primary text-3xl mb-2 block">car_crash</span>
+          <p class="text-label-md text-on-surface group-hover:text-primary transition-colors">Vehicle Problem</p>
+        </button>
+        <button onclick="prefillSupport('Payment & refund')" class="glass-card p-4 rounded-xl text-center hover:border-primary transition-colors group">
+          <span class="material-symbols-outlined text-primary text-3xl mb-2 block">payments</span>
+          <p class="text-label-md text-on-surface group-hover:text-primary transition-colors">Payment & Refund</p>
+        </button>
+        <button onclick="prefillSupport('Other enquiry')" class="glass-card p-4 rounded-xl text-center hover:border-primary transition-colors group">
+          <span class="material-symbols-outlined text-primary text-3xl mb-2 block">help_outline</span>
+          <p class="text-label-md text-on-surface group-hover:text-primary transition-colors">Other</p>
+        </button>
+      </div>
+
+      <!-- Ticket Form -->
+      <div class="glass-card p-8 rounded-xl mb-10">
+        <h3 class="text-headline-sm font-semibold text-on-surface mb-6">Raise a Support Ticket</h3>
+        <div class="flex flex-col gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label class="text-label-sm text-on-surface-variant">Your Name</label>
+              <input id="suppName" type="text" placeholder="Arjun Sharma" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-label-sm text-on-surface-variant">Email</label>
+              <input id="suppEmail" type="email" placeholder="you@example.com" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-label-sm text-on-surface-variant">Category</label>
+            <select id="suppCategory" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors">
+              <option value="">Select a category...</option>
+              <option>Booking issue</option>
+              <option>Vehicle problem</option>
+              <option>Payment & refund</option>
+              <option>Account & profile</option>
+              <option>Other enquiry</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-label-sm text-on-surface-variant">Booking ID (optional)</label>
+            <input id="suppBookingId" type="text" placeholder="e.g. b1234567890" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-label-sm text-on-surface-variant">Subject</label>
+            <input id="suppSubject" type="text" placeholder="Brief summary of your issue" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-label-sm text-on-surface-variant">Message</label>
+            <textarea id="suppMessage" rows="5" placeholder="Describe your issue in detail so we can help faster..." class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors resize-none"></textarea>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-label-sm text-on-surface-variant">Priority</label>
+            <div class="flex gap-3 flex-wrap">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="suppPriority" value="Low" checked class="accent-primary"/><span class="text-label-md">Low</span></label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="suppPriority" value="Medium" class="accent-primary"/><span class="text-label-md">Medium</span></label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="suppPriority" value="High" class="accent-primary"/><span class="text-label-md">High — urgent</span></label>
+            </div>
+          </div>
+          <button onclick="submitSupportTicket()" class="w-full py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-2">
+            <span class="material-symbols-outlined text-base">send</span> Submit Ticket
+          </button>
+        </div>
+      </div>
+
+      <!-- My Tickets -->
+      <div>
+        <h3 class="text-headline-sm font-semibold text-on-surface mb-4">My Tickets</h3>
+        <div id="myTicketsList" class="flex flex-col gap-3"></div>
+        <p id="noTicketsMsg" class="hidden text-center text-on-surface-variant py-8 text-label-md">No tickets yet.</p>
+      </div>
+
+      <!-- Contact info strip -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card p-5 rounded-xl flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary text-2xl">email</span>
+          <div><p class="text-label-sm text-on-surface-variant">Email us</p><p class="text-label-md font-semibold text-on-surface">support@signaturedrives.in</p></div>
+        </div>
+        <div class="glass-card p-5 rounded-xl flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary text-2xl">phone</span>
+          <div><p class="text-label-sm text-on-surface-variant">Call us</p><p class="text-label-md font-semibold text-on-surface">+91 80 4600 0000</p></div>
+        </div>
+        <div class="glass-card p-5 rounded-xl flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
+          <div><p class="text-label-sm text-on-surface-variant">Hours</p><p class="text-label-md font-semibold text-on-surface">Mon–Sat, 9am–8pm</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /customerApp -->
+
+<!-- ===================== ADMIN / OWNER PAGES ===================== -->
+<div id="adminApp" class="page">
+  <div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-surface border-r border-outline-variant/30 flex flex-col fixed h-full z-50 shadow-lg hide-mobile">
+      <div class="p-6 border-b border-outline-variant/20">
+        <h1 class="text-lg font-semibold text-primary">Signature Drive</h1>
+        <p class="text-label-sm text-on-surface-variant">Owner Dashboard</p>
+      </div>
+      <nav class="flex flex-col gap-1 p-4 flex-1">
+        <div class="admin-link active" onclick="showAdminPage('dashboard')" id="adminNav-dashboard">
+          <span class="material-symbols-outlined text-xl">dashboard</span> Dashboard
+        </div>
+        <div class="admin-link" onclick="showAdminPage('vehicles')" id="adminNav-vehicles">
+          <span class="material-symbols-outlined text-xl">directions_car</span> My Vehicles
+        </div>
+        <div class="admin-link" onclick="showAdminPage('bookings')" id="adminNav-bookings">
+          <span class="material-symbols-outlined text-xl">book_online</span> Bookings
+        </div>
+        <div class="admin-link" onclick="showAdminPage('customers')" id="adminNav-customers">
+          <span class="material-symbols-outlined text-xl">group</span> Customers
+        </div>
+        <div class="admin-link" onclick="showAdminPage('earnings')" id="adminNav-earnings">
+          <span class="material-symbols-outlined text-xl">payments</span> Earnings
+        </div>
+        <div class="admin-link" onclick="showAdminPage('reviews')" id="adminNav-reviews">
+          <span class="material-symbols-outlined text-xl">star</span> Reviews
+        </div>
+        <div class="admin-link" onclick="showAdminPage('support')" id="adminNav-support">
+          <span class="material-symbols-outlined text-xl">support_agent</span> Support Tickets
+        </div>
+      </nav>
+      <div class="p-4 border-t border-outline-variant/20">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-sm" id="adminAvatar">O</div>
+          <div><p class="text-label-md text-on-surface" id="adminName">Owner</p><p class="text-label-sm text-on-surface-variant" id="adminEmail2">admin@sdr.in</p></div>
+        </div>
+        <button onclick="signOut()" class="w-full py-2 rounded-lg border border-outline-variant text-label-md text-on-surface-variant hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base">logout</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Admin Main Content -->
+    <div class="ml-0 md:ml-64 flex-1 overflow-y-auto bg-surface-container-low">
+      <!-- Admin top bar -->
+      <div class="sticky top-0 z-40 bg-surface/90 backdrop-blur border-b border-outline-variant/20 px-6 py-4 flex justify-between items-center">
+        <div>
+          <h2 class="text-headline-sm font-semibold text-on-surface" id="adminPageTitle">Dashboard</h2>
+          <p class="text-label-sm text-on-surface-variant" id="adminPageSubtitle">Welcome back!</p>
+        </div>
+        <button onclick="switchToCustomer()" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-label-md text-on-surface-variant hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-base">open_in_new</span> Customer View
+        </button>
+      </div>
+
+      <div class="p-6">
+
+        <!-- DASHBOARD -->
+        <div id="adminPage-dashboard">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="glass-card p-5 rounded-xl"><p class="text-label-sm text-on-surface-variant mb-1">Total Vehicles</p><h3 class="text-headline-md text-primary font-bold" id="statVehicles">0</h3></div>
+            <div class="glass-card p-5 rounded-xl"><p class="text-label-sm text-on-surface-variant mb-1">Active Bookings</p><h3 class="text-headline-md text-primary font-bold" id="statBookings">0</h3></div>
+            <div class="glass-card p-5 rounded-xl"><p class="text-label-sm text-on-surface-variant mb-1">Total Customers</p><h3 class="text-headline-md text-primary font-bold" id="statCustomers">0</h3></div>
+            <div class="glass-card p-5 rounded-xl"><p class="text-label-sm text-on-surface-variant mb-1">Revenue (Month)</p><h3 class="text-headline-md text-primary font-bold" id="statRevenue">₹0</h3></div>
+          </div>
+          <!-- Recent Bookings -->
+          <div class="glass-card rounded-xl p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-headline-sm text-on-surface font-semibold">Recent Bookings</h3>
+              <button onclick="showAdminPage('bookings')" class="text-label-sm text-primary font-semibold">View all →</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="data-table" id="dashRecentBookings">
+                <thead><tr><th>Customer</th><th>Vehicle</th><th>Dates</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody id="dashRecentBookingsBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Quick Actions -->
+          <div class="glass-card rounded-xl p-6">
+            <h3 class="text-headline-sm text-on-surface font-semibold mb-4">Quick Actions</h3>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="openAddVehicle()" class="flex items-center gap-2 px-5 py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity">
+                <span class="material-symbols-outlined text-base">add</span> Add Vehicle
+              </button>
+              <button onclick="showAdminPage('bookings')" class="flex items-center gap-2 px-5 py-3 bg-primary-container text-on-primary-container rounded-lg text-label-md hover:opacity-90 transition-opacity">
+                <span class="material-symbols-outlined text-base">book_online</span> View Bookings
+              </button>
+              <button onclick="showAdminPage('earnings')" class="flex items-center gap-2 px-5 py-3 bg-secondary-container text-on-secondary-container rounded-lg text-label-md hover:opacity-90 transition-opacity">
+                <span class="material-symbols-outlined text-base">payments</span> Earnings
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VEHICLES -->
+        <div id="adminPage-vehicles" class="hidden">
+          <div class="flex justify-between items-center mb-6">
+            <p class="text-label-md text-on-surface-variant" id="vehicleCount">0 vehicles listed</p>
+            <button onclick="openAddVehicle()" class="flex items-center gap-2 px-5 py-3 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-base">add</span> Add Vehicle
+            </button>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="data-table" id="adminVehiclesTable">
+                <thead><tr><th>Vehicle</th><th>Category</th><th>Price/day</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="adminVehiclesBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOOKINGS -->
+        <div id="adminPage-bookings" class="hidden">
+          <div class="flex flex-wrap gap-3 mb-6">
+<select id="bookingStatusFilter" onchange="renderAdminBookings()" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:border-primary">
+               <option value="">All Status</option>
+               <option value="Confirmed">Confirmed</option>
+               <option value="Paid">Paid</option>
+               <option value="Active">Active</option>
+               <option value="Completed">Completed</option>
+               <option value="Cancelled">Cancelled</option>
+             </select>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="data-table">
+                <thead><tr><th>ID</th><th>Customer</th><th>Vehicle</th><th>Dates</th><th>Amount</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="adminBookingsBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- CUSTOMERS -->
+        <div id="adminPage-customers" class="hidden">
+          <div class="glass-card rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="data-table">
+                <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Total Bookings</th><th>Total Spent</th><th>Joined</th></tr></thead>
+                <tbody id="adminCustomersBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- EARNINGS -->
+        <div id="adminPage-earnings" class="hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="glass-card p-5 rounded-xl">
+              <p class="text-label-sm text-on-surface-variant mb-1">This Month</p>
+              <h3 class="text-headline-md text-primary font-bold" id="earnMonth">₹0</h3>
+            </div>
+            <div class="glass-card p-5 rounded-xl">
+              <p class="text-label-sm text-on-surface-variant mb-1">This Year</p>
+              <h3 class="text-headline-md text-primary font-bold" id="earnYear">₹0</h3>
+            </div>
+            <div class="glass-card p-5 rounded-xl">
+              <p class="text-label-sm text-on-surface-variant mb-1">All Time</p>
+              <h3 class="text-headline-md text-primary font-bold" id="earnTotal">₹0</h3>
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-6">
+            <h3 class="text-headline-sm font-semibold mb-4 text-on-surface">Earnings by Vehicle</h3>
+            <div class="overflow-x-auto">
+              <table class="data-table">
+                <thead><tr><th>Vehicle</th><th>Bookings</th><th>Total Earned</th></tr></thead>
+                <tbody id="earningsByVehicle"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- REVIEWS -->
+        <div id="adminPage-reviews" class="hidden">
+          <div id="adminReviewsList" class="flex flex-col gap-4"></div>
+          <p id="noReviewsMsg" class="hidden text-center text-on-surface-variant py-16">No reviews yet.</p>
+        </div>
+
+        <!-- SUPPORT TICKETS -->
+        <div id="adminPage-support" class="hidden">
+          <div class="flex flex-wrap gap-3 mb-6">
+            <select id="ticketStatusFilter" onchange="renderAdminTickets()" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:border-primary">
+              <option value="">All Status</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+            </select>
+            <select id="ticketPriorityFilter" onchange="renderAdminTickets()" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:border-primary">
+              <option value="">All Priority</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-4" id="adminTicketsList"></div>
+          <p id="noAdminTicketsMsg" class="hidden text-center text-on-surface-variant py-16">No support tickets yet.</p>
+        </div>
+
+      </div><!-- /p-6 -->
+    </div><!-- /admin main -->
+  </div>
+</div><!-- /adminApp -->
+
+<!-- Footer (customer) -->
+<footer id="customerFooter" class="w-full py-8 bg-surface-container-low border-t border-outline-variant/20">
+  <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 max-w-[1200px] mx-auto gap-4">
+    <p class="text-label-md text-on-surface-variant">© 2024 Signature Drive Rentals. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Privacy</a>
+      <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Terms</a>
+      <a class="text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Location Picker Modal -->
+<div class="modal-overlay" id="locationPickerModal">
+  <div class="glass-card rounded-xl w-full max-w-lg mx-4 relative overflow-hidden" style="max-height:88vh">
+    <div class="p-6 border-b border-outline-variant/30 flex items-center justify-between">
+      <h2 class="text-headline-sm font-semibold text-primary">Choose Pickup Location</h2>
+      <button onclick="closeModal('locationPickerModal')"><span class="material-symbols-outlined text-on-surface-variant">close</span></button>
+    </div>
+    <div class="flex px-6 pt-5 gap-2 items-center mb-2">
+      <div id="stepDot1" class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs font-bold">1</div>
+      <span class="text-label-sm font-semibold text-primary" id="stepLabel1">Select State</span>
+      <div class="flex-1 h-px bg-outline-variant mx-2"></div>
+      <div id="stepDot2" class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-xs font-bold">2</div>
+      <span class="text-label-sm text-on-surface-variant" id="stepLabel2">Select City</span>
+    </div>
+    <div class="px-6 pb-3">
+      <div class="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 focus-within:border-primary transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant text-base">search</span>
+        <input id="locationSearch" type="text" placeholder="Search..." class="bg-transparent outline-none text-body-md flex-1" oninput="filterLocationList()"/>
+      </div>
+    </div>
+    <div id="stateListPanel" class="overflow-y-auto px-6 pb-6" style="max-height:52vh">
+      <div id="stateList" class="flex flex-col gap-1"></div>
+    </div>
+    <div id="cityListPanel" class="hidden overflow-y-auto px-6 pb-6" style="max-height:52vh">
+      <button onclick="backToStates()" class="flex items-center gap-2 text-primary text-label-md mb-4 hover:underline">
+        <span class="material-symbols-outlined text-base">arrow_back</span> Back to states
+      </button>
+      <p class="text-label-sm text-on-surface-variant mb-3" id="selectedStateName"></p>
+      <div id="cityList" class="flex flex-col gap-1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Ticket Reply Modal (Admin) -->
+<div class="modal-overlay" id="ticketReplyModal">
+  <div class="glass-card rounded-xl p-8 w-full max-w-lg mx-4 relative max-h-[90vh] overflow-y-auto">
+    <button class="absolute top-4 right-4 text-on-surface-variant" onclick="closeModal('ticketReplyModal')"><span class="material-symbols-outlined">close</span></button>
+    <h2 class="text-headline-md font-semibold text-primary mb-1">Ticket Details</h2>
+    <div id="ticketDetailContent" class="mb-6"></div>
+    <h3 class="text-label-md font-semibold text-on-surface mb-3">Reply to Customer</h3>
+    <textarea id="ticketReplyText" rows="4" placeholder="Type your reply..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-body-md outline-none focus:border-primary transition-colors resize-none mb-4"></textarea>
+    <div class="flex gap-3">
+      <select id="ticketStatusUpdate" class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-label-md outline-none focus:border-primary flex-1">
+        <option value="Open">Open</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Resolved">Resolved</option>
+        <option value="Closed">Closed</option>
+      </select>
+      <button onclick="sendTicketReply()" class="flex-1 py-2 bg-primary text-on-primary rounded-lg text-label-md hover:opacity-90 transition-opacity">Send Reply</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== DATA STORE =====================
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
