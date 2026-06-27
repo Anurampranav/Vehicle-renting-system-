@@ -1,0 +1,13 @@
+{
+  "name": "signature-drive-rentals",
+  "version": "1.0.0",
+  "description": "Full-stack vehicle rental system",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "cd backend && nodemon server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

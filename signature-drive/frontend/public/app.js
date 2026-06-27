@@ -1,5 +1,5 @@
 // ===================== CONFIG =====================
-const API = 'http://localhost:5000/api';
+const API = window.location.origin.includes('localhost') ? 'http://localhost:5000/api' : (window.location.origin + '/api');
 
 // ===================== HTTP HELPER ================
 async function http(method, path, body, auth = true) {
