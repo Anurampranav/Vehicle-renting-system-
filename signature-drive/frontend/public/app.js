@@ -405,7 +405,7 @@ async function openRazorpayCheckout(booking) {
   try {
     const Razorpay = await loadRazorpayScript();
     
-    const { data: orderData } = await api.post('/payments/create-order', {
+    const orderData = await api.post('/payments/create-order', {
       bookingId: booking._id,
     });
 
