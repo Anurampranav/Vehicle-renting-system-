@@ -1,0 +1,1 @@
+const API_BASE_URL = "https://vehicle-renting-system-05vl.onrender.com";
