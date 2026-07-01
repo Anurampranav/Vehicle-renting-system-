@@ -365,8 +365,9 @@ async function confirmBooking() {
   const pickupDate    = document.getElementById('bookPickupDate').value;
   const returnDate    = document.getElementById('bookReturnDate').value;
   const location      = document.getElementById('bookLocation').value.trim();
-  const paymentMethodRaw = document.querySelector('input[name="payment"]:checked')?.value || 'Card';
-  const paymentMethod = paymentMethodRaw.charAt(0).toUpperCase() + paymentMethodRaw.slice(1).toLowerCase();
+  const paymentMethodRaw = document.querySelector('input[name="payment"]:checked')?.value || 'card';
+  const paymentMethodMap = { upi: 'UPI', card: 'Card', cash: 'Cash' };
+  const paymentMethod = paymentMethodMap[paymentMethodRaw] || 'Card';
   if (!pickupDate || !returnDate || !location) { showToast('Please fill all fields'); return; }
   if (new Date(returnDate) <= new Date(pickupDate)) { showToast('Return date must be after pickup date'); return; }
 
