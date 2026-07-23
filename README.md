@@ -29,29 +29,29 @@ A modern **Full-Stack Vehicle Rental Management System** developed as a **Softwa
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack.
 
 ### Frontend
 - HTML5
 - Tailwind CSS
 - JavaScript (ES6)
 
-### Backend
+### Backend.
 - Node.js
 - Express.js
 
-### Database
+### Database.
 - MongoDB Atlas
 - Mongoose
 
-### Authentication & Security
+### Authentication & Security.
 - JWT Authentication
 - bcrypt
 - Helmet
 - CORS
 - Express Rate Limit
 
-### Payment Gateway
+### Payment Gateway.
 - Razorpay
 
 ---
