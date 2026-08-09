@@ -29,7 +29,7 @@ A modern **Full-Stack Vehicle Rental Management System** developed as a **Softwa
 
 ---
 
-## 🛠 Tech Stack.
+## 🛠 Tech Stack
 
 ### Frontend
 - HTML5
