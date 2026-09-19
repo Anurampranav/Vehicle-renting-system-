@@ -6,7 +6,7 @@ A modern **Full-Stack Vehicle Rental Management System** developed as a **Softwa
 
 ## ✨ Features
 
-### 👤 Customer
+### 👤 Customer.
 - User Registration & Login (JWT Authentication)
 - Browse & Search Vehicles
 - Vehicle Booking System
@@ -16,7 +16,7 @@ A modern **Full-Stack Vehicle Rental Management System** developed as a **Softwa
 - Profile Management
 - Raise Support Tickets
 
-### 👨‍💼 Admin
+### 👨‍💼 Admin .
 - Secure Admin Dashboard
 - Manage Users
 - Manage Vehicles
@@ -29,7 +29,7 @@ A modern **Full-Stack Vehicle Rental Management System** developed as a **Softwa
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack.
 
 ### Frontend
 - HTML5
